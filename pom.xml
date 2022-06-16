@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
+        <module>hystrix</module>
     </modules>
 
     <properties>
