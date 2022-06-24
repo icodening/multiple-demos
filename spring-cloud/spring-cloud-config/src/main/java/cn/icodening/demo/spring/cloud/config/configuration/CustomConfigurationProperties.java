@@ -1,5 +1,6 @@
 package cn.icodening.demo.spring.cloud.config.configuration;
 
+import cn.icodening.demo.spring.cloud.config.annotation.ForcedRefresh;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
@@ -12,6 +13,7 @@ import java.util.List;
  */
 @ConfigurationProperties(prefix = "custom.config")
 @RefreshScope
+@ForcedRefresh
 public class CustomConfigurationProperties {
 
     private List<String> list = Collections.emptyList();
