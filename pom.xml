@@ -10,6 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>hystrix</module>
+        <module>spring-cloud</module>
     </modules>
 
     <properties>

@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  cn.icodening.demo.spring.cloud.config.configuration.CustomAutoConfiguration
