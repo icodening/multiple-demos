@@ -25,9 +25,9 @@ import org.springframework.core.env.Environment;
  * custom.config.list[0]=hello
  * custom.config.list[1]=world
  * custom.config.list[2]=spring
- * 那么调用{@link CustomConfigurationProperties#getList()} 的结果是 ["hello","world","spring"].
+ * 那么调用{@link CustomConfigurationProperties#getStudentNames()} 的结果是 ["hello","world","spring"].
  * 但如果在配置中心上直接移除所有 "custom.config.list[x]" 的配置项，
- * 则调用{@link CustomConfigurationProperties#getList()}的结果依然是 ["hello","world","spring"],而不是[]的空集合，这样的结果无法满足一些特殊场景.
+ * 则调用{@link CustomConfigurationProperties#getStudentNames()}的结果依然是 ["hello","world","spring"],而不是[]的空集合，这样的结果无法满足一些特殊场景.
  * <p>
  * 原理：
  * Spring Cloud在动态刷新配置类时会在监听到{@link EnvironmentChangeEvent}事件时，调用 {@link ConfigurationPropertiesRebinder#rebind()}，对当前

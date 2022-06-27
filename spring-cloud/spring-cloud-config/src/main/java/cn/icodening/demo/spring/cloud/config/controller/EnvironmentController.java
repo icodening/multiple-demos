@@ -21,7 +21,7 @@ public class EnvironmentController {
 
     @GetMapping("/echoList")
     public List<String> echoList() {
-        return customConfigurationProperties.getList();
+        return customConfigurationProperties.getStudentNames();
     }
 
 }
