@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
  * @author icodening
  * @date 2022.06.25
  */
-@Target({ElementType.TYPE, ElementType.METHOD})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ForcedRefresh {
 

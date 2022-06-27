@@ -16,13 +16,14 @@ import java.util.List;
 @ForcedRefresh
 public class CustomConfigurationProperties {
 
-    private List<String> list = Collections.emptyList();
+    private List<String> studentNames = Collections.emptyList();
 
-    public List<String> getList() {
-        return list;
+    public List<String> getStudentNames() {
+        return studentNames;
     }
 
-    public void setList(List<String> list) {
-        this.list = list;
+    public CustomConfigurationProperties setStudentNames(List<String> studentNames) {
+        this.studentNames = studentNames;
+        return this;
     }
 }
