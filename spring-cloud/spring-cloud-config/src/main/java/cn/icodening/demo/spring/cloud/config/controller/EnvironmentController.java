@@ -19,9 +19,19 @@ public class EnvironmentController {
         this.customConfigurationProperties = customConfigurationProperties;
     }
 
-    @GetMapping("/echoList")
-    public List<String> echoList() {
+    @GetMapping("/teachers")
+    public List<String> teachers() {
+        return customConfigurationProperties.getTeacherNames();
+    }
+
+    @GetMapping("/students")
+    public List<String> students() {
         return customConfigurationProperties.getStudentNames();
+    }
+
+    @GetMapping("/name")
+    public String name() {
+        return customConfigurationProperties.getName();
     }
 
 }

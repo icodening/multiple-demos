@@ -7,7 +7,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBean;
 import org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor;
-import org.springframework.boot.context.properties.bind.BindHandler;
+import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.boot.context.properties.source.ConfigurationPropertyName;
 import org.springframework.cloud.context.environment.EnvironmentChangeEvent;
@@ -56,9 +56,11 @@ public class ForcedRefreshPropertiesPostProcessor
         }
         Environment environment = applicationContext.getEnvironment();
         String configPrefix = configurationPropertiesBean.getAnnotation().prefix();
+        Object newConfigurationPropertiesInstance = BeanUtils.instantiateClass(bean.getClass());
+        Bindable<Object> configurationPropertiesBeanBindable = Bindable.ofInstance(newConfigurationPropertiesInstance)
+                .withAnnotations(configurationPropertiesBean.getAnnotation());
         ConfigurationPropertyName propertyName = ConfigurationPropertyName.of(configPrefix);
-        Object newConfigurationPropertiesBean = Binder.get(environment).bindOrCreate(propertyName,
-                configurationPropertiesBean.asBindTarget(), BindHandler.DEFAULT);
+        Object newConfigurationPropertiesBean = Binder.get(environment).bind(propertyName, configurationPropertiesBeanBindable);
         BeanUtils.copyProperties(newConfigurationPropertiesBean, bean);
         return bean;
     }
