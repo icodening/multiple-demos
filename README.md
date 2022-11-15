@@ -4,3 +4,4 @@ multiple demos
 
 * hystrix 跨线程传递上下文
 * spring-cloud 强制动态刷新配置能力扩展
+* feign 基于Capability增强feign
