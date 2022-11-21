@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>spring-cloud-config</module>
+        <module>spring-boot-thread-pool-metrics</module>
     </modules>
 
     <properties>
