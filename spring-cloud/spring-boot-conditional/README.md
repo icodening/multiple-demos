@@ -14,7 +14,27 @@
 时才加载bean。
 当修改该配置类的默认值时，`spring-boot-configuration-processor`也能够帮助我们更新配置项提示，
 而不必修改`@ConditionalOnProperty`中的`matchIfMissing`，对开发者更友好。
-如下图所示，配置类中声明了enabled默认值为false。
+如下图所示，配置类中声明了enabled默认值为false。使用方式如下：
+````java
+@Component
+@ConditionalOnPropertiesEnabled(type = SampleConfigurationProperties.class)
+public class ConditionalSampleRunner implements ApplicationRunner {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConditionalSampleRunner.class);
+
+    private final SampleConfigurationProperties sampleConfigurationProperties;
+
+    public ConditionalSampleRunner(SampleConfigurationProperties sampleConfigurationProperties) {
+        this.sampleConfigurationProperties = sampleConfigurationProperties;
+    }
+
+    @Override
+    public void run(ApplicationArguments args) {
+        LOGGER.info("conditional sample runner enabled, the name is '{}'", sampleConfigurationProperties.getName());
+    }
+}
+````
+
 ![](config.png)
 
 那么在IDEA的配置提示中也能够提示默认值为false。

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @date 2024.02.02
  */
 @Component
-@ConditionalOnPropertiesEnabled(SampleConfigurationProperties.class)
+@ConditionalOnPropertiesEnabled(type = SampleConfigurationProperties.class)
 public class ConditionalSampleRunner implements ApplicationRunner {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ConditionalSampleRunner.class);

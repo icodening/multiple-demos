@@ -19,9 +19,16 @@ import java.lang.annotation.Target;
 public @interface ConditionalOnPropertiesEnabled {
 
     /**
-     * 获取带有ConfigurationProperties注解的类，并且该类需要包含一个名为 'enabled' 的 boolean/Boolean 类型字段，用于判断是否满足条件
+     * 获取带有ConfigurationProperties注解的类
      *
      * @return 带有ConfigurationProperties注解的类
      */
-    Class<?> value();
+    Class<?> type();
+
+    /**
+     * 配置类中需要检查的属性名， 如 'enabled' 的 boolean/Boolean 类型字段，用于判断是否满足条件
+     *
+     * @return 配置类开关属性名
+     */
+    String property() default "enabled";
 }

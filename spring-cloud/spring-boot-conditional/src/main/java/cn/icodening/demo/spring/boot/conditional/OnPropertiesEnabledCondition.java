@@ -29,14 +29,15 @@ public class OnPropertiesEnabledCondition implements Condition {
         if (!conditionalOnPropertiesEnabledMergedAnnotation.isPresent()) {
             return false;
         }
-        Class<?> propertiesClass = conditionalOnPropertiesEnabledMergedAnnotation.getClass("value");
-        Field enabledField = ReflectionUtils.findField(propertiesClass, "enabled");
+        Class<?> propertiesClass = conditionalOnPropertiesEnabledMergedAnnotation.getClass("type");
+        String property = conditionalOnPropertiesEnabledMergedAnnotation.getString("property");
+        Field enabledField = ReflectionUtils.findField(propertiesClass, property);
         if (enabledField == null) {
-            throw new IllegalArgumentException("The properties class must have a field named 'enabled'");
+            throw new IllegalArgumentException("The properties class must have a field named '" + property + "'");
         }
         Class<?> fieldType = enabledField.getType();
         if (!fieldType.isPrimitive() && !Boolean.class.isAssignableFrom(fieldType)) {
-            throw new IllegalArgumentException("The field named 'enabled' must be a 'boolean or java.lang.Boolean' type");
+            throw new IllegalArgumentException("The field named '" + property + "' must be a 'boolean or java.lang.Boolean' type");
         }
         ConfigurationProperties configurationPropertiesAnnotation = AnnotationUtils.findAnnotation(propertiesClass, ConfigurationProperties.class);
         if (configurationPropertiesAnnotation == null) {
