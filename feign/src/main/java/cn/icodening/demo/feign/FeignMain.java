@@ -7,6 +7,7 @@ import feign.AsyncFeign;
 import feign.Capability;
 import feign.Contract;
 import feign.Feign;
+import feign.Target;
 import feign.jaxrs2.JAXRS2Contract;
 
 import java.io.IOException;
@@ -29,11 +30,16 @@ public class FeignMain {
         Capability capability = new DelegateCapability();
 
         //sync client
+        Target<FeignServiceSync> target = new DynamicTarget<>(FeignServiceSync.class, () -> {
+            System.out.println("dynamic get url:" + remoteAddress);
+            return remoteAddress;
+        });
         FeignServiceSync feignServiceSync = Feign.builder()
                 .contract(contract)
                 .addCapability(capability)
-                .target(FeignServiceSync.class, remoteAddress);
+                .target(target);
         System.out.println(feignServiceSync.sayHello("hello world"));
+        System.out.println(feignServiceSync.sayHello("hello world2"));
 
         //async client
         FeignServiceAsync feignServiceAsync = AsyncFeign.builder()
