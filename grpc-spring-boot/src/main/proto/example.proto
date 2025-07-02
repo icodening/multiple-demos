@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "cn.icodening.demo.spring.boot.grpc";
+service GrpcExample {
+  rpc unary (Message) returns (Message) {}
+  rpc biStream (stream Message) returns (stream Message) {}
+  rpc clientStream (stream Message) returns (Message) {}
+  rpc serverStream (Message) returns (stream Message) {}
+}
+
+message Message {
+  string message = 1;
+}

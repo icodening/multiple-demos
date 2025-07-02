@@ -1,0 +1,11 @@
+spring:
+  grpc:
+    server:
+      enabled: true
+server:
+  http2:
+    enabled: true
+grpc:
+  server:
+    servlet:
+      context-path: /

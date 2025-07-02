@@ -12,6 +12,7 @@
         <module>hystrix</module>
         <module>spring</module>
         <module>feign</module>
+        <module>grpc-spring-boot</module>
     </modules>
 
     <properties>
